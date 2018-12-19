@@ -27,8 +27,6 @@
                             Để mua sản phẩm xin đăng nhập.
                         </p>
                     <% } %>
-
-            
         </div>
 
         <div class="col-xs-12">
@@ -46,7 +44,31 @@
                             <% }); %>
 
             </ul>
+            <form method="post" action="/products/<%= p.category %>/<%= p.slug %>">
+                <input type="hidden" name="slug" value="<%= p.slug %>"/>
+                <input type="text" class="form-control" name="name" placeholder="Tên bạn ... ">
+                <input type="text" class="form-control" name="content" placeholder="Nhập nhận xét ... ">
+                <button class="btn btn-default" type="submit">Nhận xét</button>
+            </form>
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="page-header">
+                        <h1>Comments </h1>
+                    </div>
+                    <div class="comments-list">
+                        <% comments.forEach(function(cmt) {%>
+                        <div class="media-body">
+                            <h4 class="media-heading user_name"><%= cmt.name %></h4>
+                            <%= cmt.content%>
+                            <p>
+                                <small><a href="">Like</a></small>
+                            </p>
+                        </div>
+                        <% }); %>
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
+        </div>
 
     <% include layouts/footer2 %>

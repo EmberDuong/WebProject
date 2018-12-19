@@ -156,6 +156,7 @@ var adminPages = require('./routes/adminPages.js');
 var adminCategories = require('./routes/adminCategories.js');
 var adminProducts = require('./routes/adminProducts.js');
 var adminUsers = require('./routes/adminUsers.js');
+var comment = require('./routes/comment');
 
 app.use('/products', products);
 app.use('/users', users);
@@ -164,6 +165,7 @@ app.use('/admin/pages', adminPages);
 app.use('/admin/categories', adminCategories);
 app.use('/admin/products', adminProducts);
 app.use('/admin/users', adminUsers);
+app.use('/comment', comment);
 app.use('/', pages);
 
 function normalizePort(val) {
