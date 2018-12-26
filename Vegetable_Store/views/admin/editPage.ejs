@@ -1,24 +1,24 @@
 <% include layouts/adminHeader %>
 
-    <h2 class="page-title">Chỉnh sửa trang</h2>
-    <a href="/admin/pages" class="btn btn-primary">Quay lại danh sách trang</a>
+    <h2 class="page-title">Edit page</h2>
+    <a href="/admin/pages" class="btn btn-primary">Back to pages</a>
 
     <form method="POST" action="/admin/pages/edit-page/<%= id %>">
 
         <div class="form-group">
-            <label for="">Tiêu đề</label>
-            <input type="text" class="form-control" name="title" value="<%= title %>" placeholder="Tiêu đề">
+            <label for="">Title</label>
+            <input type="text" class="form-control" name="title" value="<%= title %>" placeholder="Title">
         </div>
         <div class="form-group">
             <label for="">Slug</label>
             <input type="text" class="form-control" name="slug" value="<%= slug %>" placeholder="Slug">
         </div>
         <div class="form-group">
-            <label for="">Nội dung</label>
-            <textarea class="form-control" id = "ta" name="content" cols="30" rows="10" placeholder="Nội dung" ><%= content %> </textarea>
+            <label for="">Content</label>
+            <textarea class="form-control" id = "ta" name="content" cols="30" rows="10" placeholder="Content" ><%= content %> </textarea>
         </div>
 
-        <button class="btn btn-default">Sửa trang</button>
+        <button class="btn btn-default">Edit</button>
     </form>
 
     <% include layouts/adminFooter %>

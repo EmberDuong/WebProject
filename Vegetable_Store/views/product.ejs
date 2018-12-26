@@ -1,74 +1,80 @@
-<% include layouts/header2 %>
+<% include layouts/header %>
 
-    <h1 class="page-header">
-        <%= p.title%>
-    </h1>
-    <br>
-    <div class="row">
-        <div class="col-xs-12 col-md-5">
-            <img class="spi" src="/productImages/<%= p.id%>/<%= p.image %>" alt="">
-            <br>
-        </div>
-        <div class="col-xs-12 col-md-7">
-            <p>
-                <%= p.desc %>
-            </p>
-            <p>
-                <h5><%= parseFloat(p.price).toFixed(2) %> VND </h5>
-            </p>
-                <% if(loggedIn) { %>
-                    <p>
-                            <form action="/cart/add/<%= p.slug %>"><input class="btn btn-success btn-sm" type="submit" value="Thêm vào giỏ hàng"></form>
-                        <!-- <a href="/cart/add/<%= p.slug %>">Thêm vào giỏ hàng</a> -->
-                    </p>
-
-                    <% } else {%>
+    <div class="panel-block">
+        <div class="row mt-5">
+            <div class="col-xs-12 col-md-5 mt-5">
+                <img class="spi" src="/productImages/<%= p.id%>/<%= p.image %>" alt="">
+                <br>
+            </div>
+            <div class="col-xs-12 col-md-6 mt-5 ml-5">
+                <h1 class="page-header">
+                    <%= p.title%>
+                </h1>
+                <p>
+                    <%= p.desc %>
+                </p>
+                <p>
+                    <h5><%= parseFloat(p.price).toFixed(2) %> VND </h5>
+                </p>
+                    <% if(loggedIn) { %>
                         <p>
-                            Để mua sản phẩm xin đăng nhập.
+                            <form action="/cart/add/<%= p.slug %>">
+                                <input class="btn btn-sm lip-btt type="submit" value="Thêm vào giỏ hàng">
+                            </form>
+                            <!-- <a href="/cart/add/<%= p.slug %>">Thêm vào giỏ hàng</a> -->
                         </p>
-                    <% } %>
-        </div>
-
-        <div class="col-xs-12">
-            <ul class="gallery">
-                <% galleryImages.forEach(function (image) { %>
-
-                    <% if(image !="thumbs") { %>
-                        <li>
-                            <a data-fancybox="gallery" href="/productImages/<%= p.id %>/gallery/<%= image%>">
-                                <img class="pimage" src="/productImages/<%= p.id %>/gallery/<%= image%>" alt="">
-                            </a>
-                        </li>
-                        <% } %>
-
-                            <% }); %>
-
-            </ul>
-            <form method="post" action="/products/<%= p.category %>/<%= p.slug %>">
-                <input type="hidden" name="slug" value="<%= p.slug %>"/>
-                <input type="text" class="form-control" name="name" placeholder="Tên bạn ... ">
-                <input type="text" class="form-control" name="content" placeholder="Nhập nhận xét ... ">
-                <button class="btn btn-default" type="submit">Nhận xét</button>
-            </form>
-            <div class="row">
-                <div class="col-md-8">
-                    <div class="page-header">
-                        <h1>Comments </h1>
-                    </div>
-                    <div class="comments-list">
-                        <% comments.forEach(function(cmt) {%>
-                        <div class="media-body">
-                            <h4 class="media-heading user_name"><%= cmt.name %></h4>
-                            <%= cmt.content%>
+    
+                        <% } else {%>
                             <p>
-                                <small><a href="">Like</a></small>
+                                Để mua sản phẩm xin đăng nhập.
                             </p>
+                        <% } %>
+    
+                
+            </div>
+    
+            <div class="col-xs-12 mt-5">
+                <ul class="gallery">
+                    <% galleryImages.forEach(function (image) { %>
+    
+                        <% if(image !="thumbs") { %>
+                            <li>
+                                <a data-fancybox="gallery" href="/productImages/<%= p.id %>/gallery/<%= image%>">
+                                    <img class="pimage" src="/productImages/<%= p.id %>/gallery/<%= image%>" alt="">
+                                </a>
+                            </li>
+                            <% } %>
+    
+                                <% }); %>
+    
+                </ul>
+
+                <form method="post" action="/products/<%= p.category %>/<%= p.slug %>">
+                    <input type="hidden" name="slug" value="<%= p.slug %>"/>
+                    <input type="text" class="form-control" name="name" placeholder="Tên bạn ... ">
+                    <input type="text" class="form-control" name="content" placeholder="Nhập nhận xét ... ">
+                    <button class="btn btn-default" type="submit">Nhận xét</button>
+                </form>
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="page-header">
+                            <h1>Comments </h1>
                         </div>
-                        <% }); %>
+                        <div class="comments-list">
+                            <% comments.forEach(function(cmt) {%>
+                            <div class="media-body">
+                                <h4 class="media-heading user_name"><%= cmt.name %></h4>
+                                <%= cmt.content%>
+                                <p>
+                                    <small><a href="">Like</a></small>
+                                </p>
+                            </div>
+                            <% }); %>
+                        </div>
                     </div>
-                </div>
+
+
             </div>
         </div>
-        </div>
-
+    </div>
     <% include layouts/footer2 %>

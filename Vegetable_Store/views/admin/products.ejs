@@ -1,7 +1,7 @@
 <% include layouts/adminHeader %>
 
-    <h2 class="page-title"> Danh sách mặt hàng</h2>
-    <a href="/admin/products/add-product" class="btn btn-primary">Thêm mặt hàng</a>
+    <h2 class="page-title">Products</h2>
+    <a href="/admin/products/add-product" class="btn btn-primary">Add new product</a>
     <br>
     <br>
     <% if(count > 0){%>
@@ -9,12 +9,12 @@
     <table class="table table-striped alignmiddle">
         <thead>
             <tr>
-                <th>Mặt hàng</th>
-                <th>Giá tiền</th>
-                <th>Loại rau</th>
-                <th>Ảnh minh họa</th>
-                <th>Sửa</th>
-                <th>Xóa</th>
+                <th>Product</th>
+                <th>Price</th>
+                <th>Category</th>
+                <th>Image preview</th>
+                <th>Edit</th>
+                <th>Delete</th>
             </tr>
         </thead>
         <tbody>
@@ -38,7 +38,7 @@
                         
                     </td>
                     <td>
-                        <a href="/admin/products/edit-product/<%= product._id %>">Sửa</a>
+                        <a href="/admin/products/edit-product/<%= product._id %>">Edit</a>
                     </td>
                     <td>
                                 <a class="confirmDeletion" href="/admin/products/delete-product/<%= product._id %>">Delete</a>
@@ -49,7 +49,7 @@
         </tbody>
     </table>
     <% } else {%>
-<h3 class="text-center">Không có sản phẩm nào</h3>
+<h3 class="text-center">There's no product, please add new!</h3>
     <% } %>
         
 

@@ -1,100 +1,103 @@
 <% include layouts/header3 %>
-
-    <h1 class="page-title">Giỏ hàng của tôi</h1>
+<div class="panel-block">
+    <div class="shop-header">
+        <h1>Giỏ hàng của tôi</h1>
+    </div>
     <br>
     <br>
     <% if(typeof cart !=="undefined") { %>
-        <table class="table table-striped alignmiddle">
-            <tr>
-                <th>Ảnh minh họa</th>
-                <th>Tên mặt hàng</th>
-                <th>Giá tiền</th>
-                <th>Số lượng</th>
-                <th></th>
-                <th>Thành tiền</th>
+    <table class="table table-striped alignmiddle">
+        <tr>
+            <th>Ảnh minh họa</th>
+            <th>Tên mặt hàng</th>
+            <th>Giá tiền</th>
+            <th>Số lượng</th>
+            <th></th>
+            <th>Thành tiền</th>
 
-            </tr>
-            <%var total = 0 %>
-                <% cart.forEach(function (product) { %>
-                    <% var sub = parseFloat(product.qty * product.price).toFixed(2) %>
-                        <% total += +sub %>
-                            <tr>
-                                <td>
-                                    <img class="cpi" src="<%= product.image %>" alt=""> </td>
-                                <td>
-                                    <%= product.title%>
-                                </td>
-                                <td>
-                                    <%= product.price%>
-                                </td>
-                                <td>
-                                    <%= product.qty%>
-                                </td>
-                                <td>
-                                    <a href="/cart/update/<%= product.title %>?action=add">+</a>&nbsp;
-                                    <a href="/cart/update/<%= product.title %>?action=remove">-</a>&nbsp;
-                                    <a href="/cart/update/<%= product.title %>?action=clear">Xóa</a>&nbsp;
-                                </td>
-                                <td>
-                                    <%= sub%> VND</td>
-                            </tr>
+        </tr>
+        <%var total = 0 %>
+        <% cart.forEach(function (product) { %>
+        <% var sub = parseFloat(product.qty * product.price).toFixed(2) %>
+        <% total += +sub %>
+        <tr>
+            <td>
+                <img class="cpi" src="<%= product.image %>" alt=""> </td>
+            <td>
+                <%= product.title%>
+            </td>
+            <td>
+                <%= product.price%>
+            </td>
+            <td>
+                <%= product.qty%>
+            </td>
+            <td>
+                <a href="/cart/update/<%= product.title %>?action=add">+</a>&nbsp;
+                <a href="/cart/update/<%= product.title %>?action=remove">-</a>&nbsp;
+                <a href="/cart/update/<%= product.title %>?action=clear">Xóa</a>&nbsp;
+            </td>
+            <td>
+                <%= sub%> VND</td>
+        </tr>
 
-                            <%});%>
-                                <tr>
-                                    <td colspan="6" align="right">
-                                        <b>Thành tiền: </b>
-                                        <%= parseFloat(total).toFixed(2) %> VND</td>
-                                </tr>
-                                <tr>
-                                    <td colspan="5" align="right">
-                                        <a class="clearcart btn btn-danger" href="/cart/clear">Xóa giỏ hàng</a>
-                                    </td>
-                                    <td colspan="5" align="right">
-                                        <a class="btn btn-primary buynow" href="#">Đặt mua</a>
-                                    </td>
+        <%});%>
+        <tr>
+            <td colspan="6" align="right">
+                <b>Thành tiền: </b>
+                <%= parseFloat(total).toFixed(2) %> VND</td>
+        </tr>
+        <tr>
+            <td colspan="5" align="right">
+                <a class="clearcart btn btn-danger" href="/cart/clear">Xóa giỏ hàng</a>
+            </td>
+            <td colspan="5" align="right">
+                <a class="btn btn-primary buynow" href="#">Đặt mua</a>
+            </td>
 
-                                </tr>
-        </table>
-
-
-
-        <form class="pp" action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post">
-            <input type="hidden" name="cmd" value="_cart">
-            <input type="hidden" name="upload" value="1">
-            <input type="hidden" name="business" value="jultranet-facilitator@gmail.com">
-            <% var num = 0; %>
-                <% cart.forEach(function(p){ %>
-                    <% num++ %>
-                        <input type="hidden" name="item_name_<%= num %>" value="<%= p.title %>">
-                        <input type="hidden" name="amount_<%= num %>" value="<%= p.price %>">
-                        <input type="hidden" name="quantity_<%= num %>" value="<%= p.qty %>">
-                        <% }); %>
-                            <input type="hidden" name="currency_code" value="VND">
-                            <input type="hidden" name="amount" value="<%= total %>">
-                            <input type="image" src="http://www.sandbox.paypal.com/en_US/i/btn/x-click-but01.gif" name="submit" alt="Make payments with PayPal - it's fast, free and secure!">
-        </form>
+        </tr>
+    </table>
 
 
-        <% }else { %>
-            <h3 class="text-center">Giỏ hàng của bạn trống. </h3>
-            <%}%>
-                <script>
-                    $(function () {
 
-                        $('a.clearcart').on('click', function () {
-                            if (!confirm('Confirm clear cart'))
-                                return false;
-                        });
+    <form class="pp" action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post">
+        <input type="hidden" name="cmd" value="_cart">
+        <input type="hidden" name="upload" value="1">
+        <input type="hidden" name="business" value="jultranet-facilitator@gmail.com">
+        <% var num = 0; %>
+        <% cart.forEach(function(p){ %>
+        <% num++ %>
+        <input type="hidden" name="item_name_<%= num %>" value="<%= p.title %>">
+        <input type="hidden" name="amount_<%= num %>" value="<%= p.price %>">
+        <input type="hidden" name="quantity_<%= num %>" value="<%= p.qty %>">
+        <% }); %>
+        <input type="hidden" name="currency_code" value="VND">
+        <input type="hidden" name="amount" value="<%= total %>">
+        <input type="image" src="http://www.sandbox.paypal.com/en_US/i/btn/x-click-but01.gif" name="submit" alt="Make payments with PayPal - it's fast, free and secure!">
+    </form>
 
-                        $('a.buynow').on('click', function (e) {
-                            e.preventDefault();
 
-                            $.get('/cart/buynow', function () {
-                                $('form.pp input[type=image]').click();
-                            });
-                        });
+    <% }else { %>
+    <h3 class="text-center">Giỏ hàng của bạn trống. </h3>
+    <%}%>
+</div>
+<script>
+    $(function () {
 
-                    });
-                </script>
+        $('a.clearcart').on('click', function () {
+            if (!confirm('Confirm clear cart'))
+                return false;
+        });
+
+        $('a.buynow').on('click', function (e) {
+            e.preventDefault();
+
+            $.get('/cart/buynow', function () {
+                $('form.pp input[type=image]').click();
+            });
+        });
+
+    });
+</script>
 
 <% include layouts/footer3 %>

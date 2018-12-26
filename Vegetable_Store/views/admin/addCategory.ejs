@@ -1,16 +1,16 @@
 <% include layouts/adminHeader %>
 
-    <h2 class="page-title">Thêm loại rau</h2>
-    <a href="/admin/categories" class="btn btn-primary">Quay lại danh sách loại</a>
+    <h2 class="page-title">Add category</h2>
+    <a href="/admin/categories" class="btn btn-primary">Back to categories</a>
 
     <form method="POST" action="/admin/categories/add-category">
 
         <div class="form-group">
-            <label for="">Loại rau</label>
-            <input type="text" class="form-control" name="title" value="<%= title %>" placeholder="Loại rau">
+            <label for="">Category name</label>
+            <input type="text" class="form-control" name="title" value="<%= title %>" placeholder="Category name">
         </div>
        
-        <button class="btn btn-default">Thêm loại rau</button>
+        <button class="btn btn-default">Add new</button>
     </form>
 
     <% include layouts/adminFooter %>

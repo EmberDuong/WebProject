@@ -1,22 +1,22 @@
 <% include layouts/adminHeader %>
 
-    <h2 class="page-title">Chỉnh sửa mặt hàng</h2>
-    <a href="/admin/products" class="btn btn-primary">Quay lại danh sách mặt hàng</a>
+    <h2 class="page-title">Edit product</h2>
+    <a href="/admin/products" class="btn btn-primary">Back to products</a>
     <form method="POST" action="/admin/products/edit-product/<%= id %>" enctype="multipart/form-data">
         <div class="form-group">
-            <label for="">Tên rau</label>
-            <input type="text" class="form-control" name="title" value="<%= title %>" placeholder="Tên rau">
+            <label for="">Product name</label>
+            <input type="text" class="form-control" name="title" value="<%= title %>" placeholder="Product name">
         </div>
 
         <div class="form-group">
-            <label for="">Mô tả</label>
-            <textarea class="form-control" name="desc" cols="30" rows="10" placeholder="Mô tả">
+            <label for="">Description</label>
+            <textarea class="form-control" name="desc" cols="30" rows="10" placeholder="Description">
                 <%= desc %>
             </textarea>
         </div>
 
         <div class="form-group">
-            <label for="">Loại rau</label>
+            <label for="">Category</label>
             <select name="category" class="form-control">
                 <% categories.forEach(function(cat){ %>
                     <option value="<%= cat.slug %>" 
@@ -31,12 +31,12 @@
         </div>
 
         <div class="form-group">
-            <label for="">Giá tiền</label>
-            <input type="text" class="form-control" name="price" value="<%= price %>" placeholder="Giá tiền">
+            <label for="">Price</label>
+            <input type="text" class="form-control" name="price" value="<%= price %>" placeholder="Price">
         </div>
 
         <div class="form-group">
-            <label for="">Ảnh hiện hành</label>
+            <label for="">Image</label>
             <p>
             <% if (image == "") { %>
                 <img id="noimage" src="/images/noimage.jpg" alt="">
@@ -47,7 +47,7 @@
         </div>
 
         <div class="form-group">
-            <label for="">Tải ảnh lên</label>
+            <label for="">Upload image</label>
             <input type="file" class="form-control" name="image" id="img">
             <img src="#" id="imgPreview" alt="">
         </div>
@@ -63,7 +63,7 @@
             <% if (image != "thumbs") { %>
                 <li>
                     <img src="/productImages/<%= id %>/gallery/thumbs/<%= image %>" alt="">&nbsp;
-                    <a class="confirmDeletion" href="/admin/products/delete-image/<%= image %>? id = <%= id %>">Xóa</a>
+                    <a class="confirmDeletion" href="/admin/products/delete-image/<%= image %>? id = <%= id %>">Delete</a>
                 </li>
                 <% } %>
         <%  }); %>

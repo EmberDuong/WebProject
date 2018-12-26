@@ -1,25 +1,59 @@
 <% include layouts/header %>
 
-    <div class="row products" id="products">
+<!-- <input type="text" name="" id="searchBox" placeholder="Tìm Kiếm" class="form-control"> -->
 
-        <% products.forEach(function(p){ %>
-            <div class="col-md-3" >
-                <div class="col-xs-12 p card">
-                    <a class="pa" href="/products/<%= p.category%>/<%=p.slug%>">
-                        <img class = "pimage" src="/productImages/<%= p.id %>/<%= p.image%>" alt="">
-                    </a>
-                    <div class="card-body">
-                        <h5><%= p.title%></h5>
-                        <h6><%= parseFloat(p.price)%> VND</h6>
-                        <form action="/products/<%= p.category%>/<%= p.slug%>"><input class="btn btn-success btn-sm" type="submit" value="Chi tiết"></form>
-                       <!-- <a class="vd" href="/products/<%= p.category%>/<%= p.slug%>">Xem chi tiết mặt hàng</a> -->
-                    </div>
-                </div>
-            </div>
-
-                <% }); %>
-
-
+<div class="panel-block">
+  <div class="shop-header">
+    <h1>Shop the Collection</h1>
+  </div>
+  <div class="row">
+    <div class="col-xs-12 col-md-3">
+      <ul class="list-group list-veget">
+        <h4 class="list-veget-item">Collection</h4>
+        <li>
+          <a style="text-decoration: none; display: block;" href="/products" class>Tất cả</a>
+        </li>
+        <% categories.forEach(function(c){ %>
+        <li>
+          <a style="text-decoration: none; display: block;" href="/products/<%= c.slug %>">
+            <%= c.title %>
+          </a>
+        </li>
+        <% }); %>
+      </ul>
+      <br>
+      <input type="text" name="" id="searchBox" placeholder="Tìm Kiếm" class="form-control">
     </div>
+    <!-- <div class="col-xs-12 col-md-1"></div> -->
+    <div class="col-xs-12 col-md-9">
+      <div class="row products" id="products">
+        <% products.forEach(function(p){ %>
+        <div class="col-md-4 col-sm-6 mb-3">
+          <div class="lip-card">
+            <a class="pa" href="/products/<%= p.category%>/<%=p.slug%>" style="height: 200px">
+              <img class= "w-100" src="/productImages/<%= p.id %>/<%= p.image%>" alt="">
+            </a>
+            <div class="card-body">
+              <h5>
+                <%= p.title%>
+              </h5>
+              <h6>
+                <%= parseFloat(p.price)%> VND</h6>
+              <form action="/products/<%= p.category%>/<%= p.slug%>"><input class="btn w-100 lip-btt btn-sm" type="submit"
+                  value="Chi tiết"></form>
+              <!-- <a class="vd" href="/products/<%= p.category%>/<%= p.slug%>">Xem chi tiết mặt hàng</a> -->
+            </div>
+          </div>
+        </div>
+        <% }); %>
+      </div>
+    </div>
+  </div>
+  <br>
+  <div>
+    <!-- banner -->
+    <img src="http://snakeriverseeds.com/wp-content/uploads/2014/05/Veg-Fruit-Banner1.jpg" alt="" style="width: 100%">
+  </div>
+</div>
 
-    <% include layouts/footer %>
+<% include layouts/footer %>

@@ -1,18 +1,18 @@
 <% include layouts/adminHeader %>
 
 <h2 class="page-title">Users</h2>
-<a href="/admin/users/add-user" class="btn btn-primary">Thêm thành viên</a>
+<a href="/admin/users/add-user" class="btn btn-primary">Add new user</a>
 <br><br>
 
 <table class="table table-striped sorting">
 
     <thead>
         <tr class="home">
-            <th>Tên</th>
+            <th>Name</th>
             <th>Username</th>
-            <th>Quyền Admin</th>
-            <th>Sửa</th>
-            <th>Xóa</th>
+            <th>Is Admin</th>
+            <th>Edit</th>
+            <th>Delete</th>
 
         </tr>
     </thead>
@@ -23,19 +23,19 @@
             <% if( user.username  ) { %>
             <td><%= user.username %></td>
             <% } else { %>
-                <td> Đăng nhập bằng Gmail</td>
+                <td>Loggin via Gmail</td>
                 <% } %>
                 <% if( user.admin == 1 ) { %>
-                    <td>Có quyền Admin </td>
+                    <td>Admin</td>
                 <% } else { %>
-                    <td> Không có quyền Admin </td>
+                    <td>Not Admin </td>
                 <% } %>
             
-            <td><a href="/admin/users/edit-user/<%= user._id %>">Sửa</a></td>
+            <td><a href="/admin/users/edit-user/<%= user._id %>">Edit</a></td>
             <% if (user.name == "Admin") { %>
             <td></td>
             <% }  else {%>
-            <td><a class="confirmDeletion" href="/admin/users/delete-user/<%= user._id %>">Xóa</a></td>
+            <td><a class="confirmDeletion" href="/admin/users/delete-user/<%= user._id %>">Delete</a></td>
             <% }%>
         </tr>
         <% }); %>

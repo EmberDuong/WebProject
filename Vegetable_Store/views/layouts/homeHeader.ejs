@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+  <title>
+    <%= title %>
+  </title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+    crossorigin="anonymous">
+  <link rel="stylesheet" href="/css/style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.3.5/jquery.fancybox.min.css" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+</head>
+
+<body>
+  <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light" style="background-color: rgb(246, 229, 220) !important">
+    <div class="container">
+      <div class="navbar-header">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar"
+          aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="/products">All Lipstick</a>
+      </div>
+      <div id="navbar" class="collapse navbar-collapse">
+        <ul class="navbar-nav">
+          <% pages.forEach(function(page){ %>
+          <% if (page.slug == "home"){ %>
+          <li class="nav-item">
+            <a class="nav-link text-dark" href="/">
+              <%= page.title %>
+            </a>
+          </li>
+          <% } else { %>
+          <li class="nav-item">
+            <a class="nav-link text-dark" href="/<%= page.slug %> ">
+              <%= page.title %>
+            </a>
+          </li>
+          <% } %>
+          <% }); %>
+
+
+        </ul>
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link text-dark" href="/cart/checkout">Giỏ hàng (
+              <% if (typeof cart !== "undefined") { %>
+              <%= cart.length %>
+              <% } else {%>
+              0
+              <% } %>
+              )</a>
+          </li>
+
+
+
+          <% if (user) { %>
+          <li class="nav-item">
+            <a class="nav-link text-dark" href="/users/logout">Hi,
+              <%= user.name %> ( Đăng xuất )</a>
+          </li>
+          <% } else { %>
+          <li class="nav-item">
+            <a class="nav-link text-dark" href="/users/register">Đăng ký</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-dark border-btt" href="/users/login">Đăng nhập</a>
+          </li>
+          <% } %>
+          <% if (user && user.admin == 1) { %>
+          <li class="nav-item">
+            <a class="nav-link text-dark" href="/admin/pages">Khu vực Admin</a>
+          </li>
+          <% }%>
+
+        </ul>
+
+      </div>
+      <!--/.nav-collapse -->
+    </div>
+  </nav>
+  <br>
+  <br>
+  <br>
+  <% include ./promo %>
+  <% include ./brand %>
+
+  <br>
+  <br>
+  <div class="container">
+    <%- messages('messages', locals) %>
+    <% if (errors) {%>
+    <% errors.forEach(function(error)  { %>
+    <div class="alert-danger">
+      <%= error.msg %>
+    </div>
+    <% });%>
+    <% } %>
+    <br>
+    
+    <!-- <div class="row"> -->
+    <!-- <div class="col-xs-12"> -->

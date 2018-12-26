@@ -1,27 +1,27 @@
 <% include layouts/adminHeader %>
 
 <h2 class="page-title">Pages</h2>
-<a href="/admin/pages/add-page" class="btn btn-primary">Thêm trang</a>
+<a href="/admin/pages/add-page" class="btn btn-primary">Add new page</a>
 <br><br>
 
 <table class="table table-striped sorting">
 
     <thead>
         <tr class="home">
-            <th>Tiêu đề</th>
-            <th>Sửa</th>
-            <th>Xóa</th>
+            <th>Title</th>
+            <th>Edit</th>
+            <th>Delete</th>
         </tr>
     </thead>
     <tbody>
         <% pages.forEach(function(page){ %>
         <tr id="id_<%= page._id %>" class="<%= page.slug %>">
             <td><%= page.title %></td>
-            <td><a href="/admin/pages/edit-page/<%= page._id %>">Sửa</a></td>
+            <td><a href="/admin/pages/edit-page/<%= page._id %>">Edit</a></td>
             <% if (page.slug == "home") { %>
             <td></td>
             <% }  else {%>
-            <td><a class="confirmDeletion" href="/admin/pages/delete-page/<%= page._id %>">Xóa</a></td>
+            <td><a class="confirmDeletion" href="/admin/pages/delete-page/<%= page._id %>">Delete</a></td>
             <% }%>
         </tr>
         <% }); %>
